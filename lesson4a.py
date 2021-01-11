@@ -45,11 +45,12 @@ A = [1,3,1,4,2,3,5,4]
 X = 5
 def solution(X,A):
     dict = {}
-    for x in range(0,len(A)-1):
-        dict[A[x]] = x
-        result = dict.get(X)
+    for x in range(0,len(A)):
+        if A[x] not in dict:
+            dict[A[x]] = x
     if len(dict) < X:
         return -1
+    result = max(list(dict.values()))
     return result
 
 print(solution(X,A))
