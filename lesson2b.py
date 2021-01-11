@@ -28,22 +28,28 @@ N is an odd integer within the range [1..1,000,000];
 each element of array A is an integer within the range [1..1,000,000,000];
 all but one of the values in A occur an even number of times."""
 
-A = [9,4,9,4,7,9,4,4,9,4,9]
+A = [9, 3, 9, 3, 9, 5, 9]
 def solution(A):
-    single = []
-    multiple = []
-    for x in A:
-        if x in single:
-            multiple.append(x)
+    #Error check
+    if not isinstance(A,list):
+        raise TypeError("Input should be a list")
+    if (len(A) == 1) or (len(A)%2 == 0):
+        print("Input list must be longer than one and contain an odd number of elements")
+
+    dict = {}
+    for element in A:
+        if element in dict:
+            dict[element] += 1
         else:
-            single.append(x)
-    x = 0
-    while len(single) > 1:
-        if x in multiple:
-            single.remove(x)
-        x +=1
-    return single[0]
+            dict[element] = 1
+
+    dict2 = {v: k for k, v in dict.items()}
+
+    index = dict2.keys()
+
+    for i in index:
+        if (i % 2) != 0:
+            return dict2[i]
+
+
 print(solution(A))
-
-
-
