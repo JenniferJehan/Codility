@@ -52,5 +52,4 @@ def solution(X,A):
         return -1
     result = max(list(dict.values()))
     return result
-
 print(solution(X,A))
